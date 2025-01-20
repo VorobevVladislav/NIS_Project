@@ -1,0 +1,39 @@
+import logging
+import aiohttp
+import asyncio
+import aiosqlite
+from contextlib import closing
+from datetime import datetime
+from typing import List, Optional
+
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
+from aiogram import Bot, Dispatcher, F, Router, types
+from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.enums import ChatType
+from aiogram.filters import CommandStart, Command
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
+from aiogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.utils import markdown
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+#from langchain.chat_models.gigachat import GigaChat
+#вроде установила библиотеку, но хз что ему не нравится
+from aiogram.types import BotCommand, BotCommandScopeDefault
+from langchain_gigachat import GigaChat
+from langchain import LLMChain, PromptTemplate
+from langchain.schema import HumanMessage, SystemMessage
+from langchain.agents import AgentExecutor, initialize_agent, Tool
+from langchain.memory import ConversationBufferMemory
+from langchain.tools import StructuredTool
+from langchain.chains.summarize import load_summarize_chain
+from langchain.docstore.document import Document
+from pydantic import BaseModel
+from typing import Dict
+from functools import partial
+import apscheduler
+import requests
+from bs4 import BeautifulSoup
+from langchain.text_splitter import CharacterTextSplitter
+from googlesearch import search
+import re
